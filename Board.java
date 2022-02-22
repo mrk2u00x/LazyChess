@@ -1,7 +1,7 @@
 /**
  * Lazy Chess
  * @author Bryan Lin
- * @version 2002.2.18
+ * @version 2002.2.21
  */
 
 import static Information.Tag.*;
@@ -14,6 +14,8 @@ public class Board implements Cloneable
 {
     
     private HashMap<Point, Piece> board;
+    private Player p1;
+    private Player p2;
     
     /**
      * Will record the point that make two step as the first move, 
@@ -22,7 +24,11 @@ public class Board implements Cloneable
      */
     private Point enPassant;
 
-    public Board()
+    /**
+     * Creates empty board without any pieces,
+     * used by clone for easier copy of another board
+     */
+    private Board()
     {   
         board = new HashMap<>();
         enPassant = null;
@@ -31,22 +37,22 @@ public class Board implements Cloneable
     }
 
     /**
-     * Creates Empty board when empty is true
-     * @param empty
+     * Constructor for Board
+     * @param name1 Player 1's name
+     * @param name2 Player 2's name
      */
-    public Board(boolean empty)
+    public Board(String name1, String name2)
     {
-        board = new HashMap<>();
-        enPassant = null;
-
-        if(!empty)
-            initizeBoard();;
+        new Board();
+        p1 = new Player(Color.WHITE, name1);
+        p2 = new Player(Color.BLACK, name2);
     }
+
 
     /**
      * Insert all the pieces to it's default position
      */
-    private void initizeBoard()
+    public void initizeBoard()
     {
         //Generate Pawn
         for(int i = 0; i < 8; i++)
@@ -98,6 +104,23 @@ public class Board implements Cloneable
     public boolean hasPiece(Point target) { return board.containsKey(target); }
     public void setEnPassant(Point enPassant) { this.enPassant = new Point(enPassant); }
     public Point getEnPassant() { return enPassant; }
+    public String getPlayer1Name() { return p1.getName(); }
+    public String getPlayer2Name() { return p2.getName(); }
+
+
+    /**
+     * Returns all pieces on the board
+     * @return every Piece in HashMap board
+     */
+    public HashMap<Point, Piece> getAllPiece()
+    {
+        HashMap<Point, Piece> hold = new HashMap<>();
+
+        for(Entry<Point, Piece> e : board.entrySet())
+            hold.put(new Point(e.getKey()), e.getValue().clone());
+
+        return hold;
+    }
 
     /**
      * Get all the pieces from the Color side
@@ -143,6 +166,40 @@ public class Board implements Cloneable
         if(hasPiece(start) && (!inBound(end)))
             return false;
 
+        //King castle
+        if(getPiece(start).getType() == Type.KING && start.distance(end) == 2)
+        {
+            //Determine Rook placement
+            int xStart = (end.getX() == 2 ? 3 : 5);
+            int xEnd = (xStart == 3 ? 0 : 8);
+            int y = (int)start.getY();
+
+            movePiece(new Point(xStart, y), new Point(xEnd, y));
+        }
+
+        //En Passant
+        if(getPiece(start).getType() == Type.PAWN)
+        {
+            double distance = start.distance(end);
+
+            //Reset En Passant
+            if(distance == 1)
+                enPassant = null;
+            
+            //Setting En Passant
+            else if(distance == 2)
+                enPassant = new Point(end);
+
+            //Determine if moving diagonally and without enemy on end
+            else if(!hasPiece(end))
+            {
+                removePiece(enPassant);
+                enPassant = null;
+            }
+        }
+        else
+            enPassant = null;
+        
         board.put(new Point(end), board.get(start));
         getPiece(end).moved();
         board.remove(start);
@@ -152,7 +209,7 @@ public class Board implements Cloneable
 
     public Board clone()
     {
-        Board rtn = new Board(true);
+        Board rtn = new Board();
         
         //Copying data
         for(Entry<Point, Piece> e : board.entrySet())
@@ -334,33 +391,20 @@ public class Board implements Cloneable
         //Castle move
         if(!selected.isMoved())
         {
-            if(selected.getSide() == Color.WHITE)
-            {
-                Point location = new Point(0, 0);
-                //Left Side Rook haven't moved
-                if(hasPiece(location) && (!getPiece(location).isMoved()))
-                    moves.add(new Point(2, 0));
+            int y = (selected.getSide() == Color.WHITE ? 0 : 8);
 
-                location.setLocation(8, 0);
-                
-                //Right side Rook
-                if(hasPiece(location) && (!getPiece(location).isMoved()))
-                    moves.add(new Point(6, 0));
-
-            }
-            else
-            {
-                Point location = new Point(0, 8);
-                //Left Side Rook haven't moved
-                if(hasPiece(location) && (!getPiece(location).isMoved()))
-                    moves.add(new Point(2, 8));
-
-                location.setLocation(8, 8);
-                
-                //Right side Rook
-                if(hasPiece(location) && (!getPiece(location).isMoved()))
-                    moves.add(new Point(6, 8));
-            }
+            //Left Side Rook haven't moved && empty between them
+            Point location = new Point(0, y);                
+            if(hasPiece(location) && (!getPiece(location).isMoved()))
+                if(!(hasPiece(new Point(1, y)) || hasPiece(new Point(2, y))
+                ||   hasPiece(new Point(3, y)) ))
+                    moves.add(new Point(2, y));
+            
+            //Right side
+            location.setLocation(8, y);
+            if(hasPiece(location) && (!getPiece(location).isMoved()))
+                if(!(hasPiece(new Point(5, y)) || hasPiece(new Point(6, y)) ))
+                    moves.add(new Point(6, y));
         }
         
 
