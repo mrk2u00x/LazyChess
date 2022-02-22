@@ -1,35 +1,32 @@
 /**
  * Lazy Chess
  * @author Bryan Lin
- * @version 2002.2.18
+ * @version 2002.2.21
  */
 
 import static Information.Tag.*;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class Logic
 {
     private Board game;
     private Board future;
-    private Player p1;
-    private Player p2;
     private Color turn;
     
-    public Logic()
+    public Logic(String name1, String name2)
     {
-        game = new Board();
+        game = new Board(name1, name2);
+        game.initizeBoard();
         future = null;
         turn = Color.WHITE;
 
-        p1 = new Player(Color.WHITE);
-        p2 = new Player(Color.BLACK);
     }
 
     /**
      * Move the Piece at start to end, illegal move will not move the board. 
-     * The Special move are handled here
      * @param start
      * @param end
      * @return true if the piece is moved to end
@@ -47,34 +44,7 @@ public class Logic
         //Illegal Move
         if(!getLegalMove(start).contains(end))
             return false;
-        
-        //King castle
-        if(game.getPiece(start).getType() == Type.KING && start.distance(end) == 2)
-        {
-            //Determine Rook placement
-            int xStart = (end.getX() == 2 ? 3 : 5);
-            int xEnd = (xStart == 3 ? 0 : 8);
-            int y = (turn == Color.WHITE ? 0 : 8);
-
-            game.movePiece(new Point(xStart, y), new Point(xEnd, y));
-        }
-
-        //En Passant
-        if(game.getPiece(start).getType() == Type.PAWN)
-        {
-            double distance = start.distance(end);
-
-            //Setting enPassant
-            if(distance == 2)
-                game.setEnPassant(end);
-            
-            //Determine if moving diagonally and without enemy on end
-            if(distance != 1 && distance != 2 && (!game.hasPiece(end)))
-            {
-                game.removePiece(game.getEnPassant());
-                game.setEnPassant(null);
-            }
-        }
+    
 
         game.movePiece(start, end);
 
@@ -141,6 +111,21 @@ public class Logic
     }
 
     /**
+     * Checks if the Color side any any available moves
+     * @param side
+     * @return True if there's moves availble for side
+     */
+    public boolean hasLegalMove(Color side)
+    {
+        HashMap<Point, Piece> ally = game.getAllyPiece(side);
+        for(Entry<Point, Piece> e : ally.entrySet())
+            if(!getLegalMove(e.getKey()).isEmpty())
+                return false;
+        
+        return true;
+    }
+
+    /**
      * Helper method for isChecked
      * @param king where the king is
      * @param side Color of king
@@ -162,7 +147,6 @@ public class Logic
                         return true;
                 }
             }
-
 
         return false;
     }
