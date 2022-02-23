@@ -70,7 +70,7 @@ public class Logic
         {
             future = game.clone();
             future.movePiece(target, p);
-            if(isChecked(turn))
+            if(!isChecked(turn))
                 processedMove.add(new Point(p));
         }
 
@@ -120,9 +120,9 @@ public class Logic
         HashMap<Point, Piece> ally = game.getAllyPiece(side);
         for(Entry<Point, Piece> e : ally.entrySet())
             if(!getLegalMove(e.getKey()).isEmpty())
-                return false;
+                return true;
         
-        return true;
+        return false;
     }
 
     /**
