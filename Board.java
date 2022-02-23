@@ -57,35 +57,35 @@ public class Board implements Cloneable
         //Generate Pawn
         for(int i = 0; i < 8; i++)
         {
-            board.put(new Point(1, i), new Piece(Color.WHITE, Type.PAWN));
-            board.put(new Point(6, i), new Piece(Color.BLACK, Type.PAWN));
+            board.put(new Point(i, 1), new Piece(Color.WHITE, Type.PAWN));
+            board.put(new Point(i, 6), new Piece(Color.BLACK, Type.PAWN));
         }
 
         //Generate Knight
-        board.put(new Point(0, 1), new Piece(Color.WHITE, Type.KNIGHT));
-        board.put(new Point(0, 6), new Piece(Color.WHITE, Type.KNIGHT));
-        board.put(new Point(7, 1), new Piece(Color.BLACK, Type.KNIGHT));
-        board.put(new Point(7, 6), new Piece(Color.BLACK, Type.KNIGHT));
+        board.put(new Point(1, 0), new Piece(Color.WHITE, Type.KNIGHT));
+        board.put(new Point(6, 0), new Piece(Color.WHITE, Type.KNIGHT));
+        board.put(new Point(1, 7), new Piece(Color.BLACK, Type.KNIGHT));
+        board.put(new Point(6, 7), new Piece(Color.BLACK, Type.KNIGHT));
 
         //Generate Rook
         board.put(new Point(0, 0), new Piece(Color.WHITE, Type.ROOK));
-        board.put(new Point(0, 7), new Piece(Color.WHITE, Type.ROOK));
-        board.put(new Point(7, 0), new Piece(Color.BLACK, Type.ROOK));
+        board.put(new Point(7, 0), new Piece(Color.WHITE, Type.ROOK));
+        board.put(new Point(0, 7), new Piece(Color.BLACK, Type.ROOK));
         board.put(new Point(7, 7), new Piece(Color.BLACK, Type.ROOK));
 
         //Generate Bishop
-        board.put(new Point(0, 2), new Piece(Color.WHITE, Type.BISHOP));
-        board.put(new Point(0, 5), new Piece(Color.WHITE, Type.BISHOP));
-        board.put(new Point(7, 2), new Piece(Color.BLACK, Type.BISHOP));
-        board.put(new Point(7, 5), new Piece(Color.BLACK, Type.BISHOP));
+        board.put(new Point(2, 5), new Piece(Color.WHITE, Type.BISHOP));
+        board.put(new Point(5, 0), new Piece(Color.WHITE, Type.BISHOP));
+        board.put(new Point(2, 7), new Piece(Color.BLACK, Type.BISHOP));
+        board.put(new Point(5, 7), new Piece(Color.BLACK, Type.BISHOP));
         
         //Generate Queen
-        board.put(new Point(0, 3), new Piece(Color.WHITE, Type.QUEEN));
-        board.put(new Point(7, 3), new Piece(Color.BLACK, Type.QUEEN));
+        board.put(new Point(3, 0), new Piece(Color.WHITE, Type.QUEEN));
+        board.put(new Point(3, 7), new Piece(Color.BLACK, Type.QUEEN));
 
         //Generate King
-        board.put(new Point(0, 4), new Piece(Color.WHITE, Type.KING));
-        board.put(new Point(7, 4), new Piece(Color.BLACK, Type.KING));
+        board.put(new Point(4, 0), new Piece(Color.WHITE, Type.KING));
+        board.put(new Point(4, 7), new Piece(Color.BLACK, Type.KING));
         
     }
     
@@ -170,8 +170,8 @@ public class Board implements Cloneable
         if(getPiece(start).getType() == Type.KING && start.distance(end) == 2)
         {
             //Determine Rook placement
-            int xStart = (end.getX() == 2 ? 3 : 5);
-            int xEnd = (xStart == 3 ? 0 : 8);
+            int xStart = (end.getX() == 2 ? 0 : 7);
+            int xEnd = (xStart == 0 ? 3 : 5);
             int y = (int)start.getY();
 
             movePiece(new Point(xStart, y), new Point(xEnd, y));
@@ -391,7 +391,7 @@ public class Board implements Cloneable
         //Castle move
         if(!selected.isMoved())
         {
-            int y = (selected.getSide() == Color.WHITE ? 0 : 8);
+            int y = (selected.getSide() == Color.WHITE ? 0 : 7);
 
             //Left Side Rook haven't moved && empty between them
             Point location = new Point(0, y);                
@@ -401,7 +401,7 @@ public class Board implements Cloneable
                     moves.add(new Point(2, y));
             
             //Right side
-            location.setLocation(8, y);
+            location.setLocation(7, y);
             if(hasPiece(location) && (!getPiece(location).isMoved()))
                 if(!(hasPiece(new Point(5, y)) || hasPiece(new Point(6, y)) ))
                     moves.add(new Point(6, y));
@@ -430,7 +430,7 @@ public class Board implements Cloneable
             {
                 moves.add(new Point(location));
                 location.translate(0, direction);
-                if((!hasPiece(location)) && selected.isMoved())
+                if( (!hasPiece(location)) && (!selected.isMoved()) )
                     moves.add(new Point(location));
             }
 
