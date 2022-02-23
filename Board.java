@@ -1,7 +1,7 @@
 /**
  * Lazy Chess
  * @author Bryan Lin
- * @version 2002.2.21
+ * @version 2002.2.22
  */
 
 import static Information.Tag.*;
@@ -233,8 +233,6 @@ public class Board implements Cloneable
         switch(temp.getType())
         {
             case KING:
-                for(Point p : getAroundMove(target))
-                    moves.add(new Point(p));
                 for(Point p : getSpecialMove(target))
                     moves.add(new Point(p));
                 break;
