@@ -1,7 +1,7 @@
 /**
  * Lazy Chess
  * @author Bryan Lin
- * @version 2002.2.18
+ * @version 2002.2.22
  */
 
 import static Information.Tag.*;
@@ -40,6 +40,7 @@ public class Piece implements Cloneable
             case ROOK:
             case PAWN:
                 moved = false;
+                break;
             default:
                 moved = true;
         }
