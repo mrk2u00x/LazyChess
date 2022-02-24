@@ -135,6 +135,11 @@ public class MainGUI {
 		
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.setToolTipText("Starts New Game");
+		newGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				newGameMenuItemActionPerformed(e);
+			}
+		});
 		newGameButton.setBounds(33, 390, 103, 23);
 		mainGUI.getContentPane().add(newGameButton);
 		
