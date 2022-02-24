@@ -173,4 +173,9 @@ public class MainGUI {
 		Help helpWindow = new Help();
 		helpWindow.setVisible(true);
 	}
+	//Creates chess board form
+	private void newGameMenuItemActionPerformed(java.awt.event.ActionEvent e) {
+		BoardGUI boardGUI = new BoardGUI();
+		boardGUI.setVisible(true);
+	}
 }
