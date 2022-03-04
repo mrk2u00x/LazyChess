@@ -17,43 +17,54 @@ public class BoardGUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BoardGUI frame = new BoardGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater(() -> run());	
 	}
 	
-    public void paint(Graphics graphicInterface)
+	public static void run()
+	{
+		try
+		{
+			BoardGUI frame = new BoardGUI();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+    public void paint(Graphics g)
     {
-    
-    	graphicInterface.fillRect(50, 50, 600, 600);
-        for(int x=50; x<=600; x+=150)
-            for(int y=50; y<=600; y+=150)
-            	graphicInterface.clearRect(x, y, 75, 75);
-        
-    
-         for(int x=125; x<=600; x+=150)
-            for(int y=125; y<=600; y+=150)
-            	graphicInterface.clearRect(x, y, 75, 75);
-        
+       paintBoard(g);
     }
+
+	public void paintBoard(Graphics g)
+	{
+		for(int y = 0; y < 4; y++)
+		for(int x = 0; x < 4; x++)
+		{
+			int baseX = 150 * x + 8;
+			int baseY = 150 * y + 30;
+			
+			g.setColor(Color.WHITE);
+			g.fillRect(baseX, baseY, 75, 75);
+			g.fillRect(baseX + 75, baseY + 75, 75, 75);
+
+			g.setColor(Color.BLACK);
+			g.fillRect(baseX + 75, baseY, 75, 75);
+			g.fillRect(baseX, baseY + 75, 75, 75);
+		}	
+	}
 
 	/**
 	 * Create the frame.
 	 */
 	public BoardGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(700,700);
+		setBackground(Color.pink);
+		setResizable(false);
+		setSize(616, 639);
 		setTitle("Lazy Chess Game");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(About.class.getResource("/assets/white_king.png")));
-		setBackground(Color.GRAY);
 		setLocationRelativeTo(null);
 		setVisible(true);
 		contentPane = new JPanel();
