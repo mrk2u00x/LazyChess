@@ -46,7 +46,7 @@ public class MainGUI implements Runnable {
     }
 
     private void initializeMainMenu() {
-        createFrame();;
+        createFrame();
         createBoxComponents();
         addGameTitle();
         addPlayerFields();
