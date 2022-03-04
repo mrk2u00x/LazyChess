@@ -81,30 +81,18 @@ public class MainGUI {
 		fileMenu.add(menuSave);
 
 		JMenuItem menuQuit = new JMenuItem("Quit");
-		menuQuit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		menuQuit.addActionListener(e -> System.exit(0));
 		fileMenu.add(menuQuit);
 
 		JMenu helpMenu = new JMenu("Help");
 		menuBar.add(helpMenu);
 
 		JMenuItem menuHelp = new JMenuItem("Help");
-		menuHelp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				helpMenuItemActionPerformed(e);
-			}
-		});
+		menuHelp.addActionListener(e -> helpMenuItemActionPerformed(e));
 		helpMenu.add(menuHelp);
 		
 		JMenuItem menuAbout = new JMenuItem("About");
-		menuAbout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				aboutMenuItemActionPerfromed(e);
-			}
-		});
+		menuAbout.addActionListener(e -> aboutMenuItemActionPerfromed(e));
 		helpMenu.add(menuAbout);
 		mainGUI.getContentPane().setLayout(null);
 	}
@@ -146,33 +134,24 @@ public class MainGUI {
 	
 	private void initializeButton()
 	{
+		//New game button
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.setToolTipText("Starts New Game");
-		newGameButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				newGameMenuItemActionPerformed(e);
-			}
-		});
+		newGameButton.addActionListener(e -> newGameMenuItemActionPerformed(e));
 		newGameButton.setBounds(33, 390, 103, 23);
 		mainGUI.getContentPane().add(newGameButton);
 		
+		//Help button
 		JButton helpButton = new JButton("Help");
 		helpButton.setToolTipText("Help");
-		helpButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				helpMenuItemActionPerformed(e);
-			}
-		});
+		helpButton.addActionListener(e -> helpMenuItemActionPerformed(e));
 		helpButton.setBounds(146, 390, 102, 23);
 		mainGUI.getContentPane().add(helpButton);
 		
+		//Quit Button
 		JButton quitButton = new JButton("Quit");
 		quitButton.setToolTipText("Exits Program");
-		quitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		quitButton.addActionListener(e -> System.exit(0));
 		quitButton.setBounds(258, 390, 103, 23);
 		mainGUI.getContentPane().add(quitButton);
 		
@@ -182,17 +161,17 @@ public class MainGUI {
 	}
 
 	//Creates new About form
-	private void aboutMenuItemActionPerfromed(java.awt.event.ActionEvent e) {
+	private void aboutMenuItemActionPerfromed(ActionEvent e) {
 		About aboutWindow = new About();
 		aboutWindow.setVisible(true);
 	}
 	//Creates new Help Form
-	private void helpMenuItemActionPerformed(java.awt.event.ActionEvent e) {
+	private void helpMenuItemActionPerformed(ActionEvent e) {
 		Help helpWindow = new Help();
 		helpWindow.setVisible(true);
 	}
 	//Creates chess board form
-	private void newGameMenuItemActionPerformed(java.awt.event.ActionEvent e) {
+	private void newGameMenuItemActionPerformed(ActionEvent e) {
 		BoardGUI boardGUI = new BoardGUI();
 		boardGUI.setVisible(true);
 	}
