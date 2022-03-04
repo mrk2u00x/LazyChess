@@ -42,19 +42,19 @@ public class BoardGUI extends JFrame {
 	public void paintBoard(Graphics g)
 	{
 		for(int y = 0; y < 4; y++)
-		for(int x = 0; x < 4; x++)
-		{
-			int baseX = 150 * x + 8;
-			int baseY = 150 * y + 30;
-			
-			g.setColor(Color.WHITE);
-			g.fillRect(baseX, baseY, 75, 75);
-			g.fillRect(baseX + 75, baseY + 75, 75, 75);
+			for(int x = 0; x < 4; x++)
+			{
+				int baseX = 150 * x + 8;
+				int baseY = 150 * y + 30;
+				
+				g.setColor(Color.WHITE);
+				g.fillRect(baseX, baseY, 75, 75);
+				g.fillRect(baseX + 75, baseY + 75, 75, 75);
 
-			g.setColor(Color.BLACK);
-			g.fillRect(baseX + 75, baseY, 75, 75);
-			g.fillRect(baseX, baseY + 75, 75, 75);
-		}	
+				g.setColor(Color.BLACK);
+				g.fillRect(baseX + 75, baseY, 75, 75);
+				g.fillRect(baseX, baseY + 75, 75, 75);
+			}	
 	}
 
 	
@@ -69,13 +69,14 @@ public class BoardGUI extends JFrame {
 	 */
 	public BoardGUI(String name1, String name2) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBackground(Color.pink);
+		setBackground(Color.gray);
 		setResizable(false);
 		setSize(616, 638);
 		setTitle("Lazy Chess Game");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(About.class.getResource("/assets/white_king.png")));
 		setLocationRelativeTo(null);
 		setVisible(true);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
