@@ -231,4 +231,12 @@ public class Logic
 
         return false;
     }
+
+    public boolean legalSelect(Point p)
+    {
+        if(!game.hasPiece(p))
+            return false;
+
+        return turn == game.getPiece(p).getSide();
+    }
 }
