@@ -124,4 +124,4 @@ public class MainGUI implements Runnable {
         int quit = JOptionPane.showConfirmDialog(mainGUI, "Are you sure you want to quite?", "Quite", JOptionPane.OK_CANCEL_OPTION);
         if(quit == JOptionPane.OK_OPTION) mainGUI.dispose();
     }
-}} 
+}
