@@ -1,10 +1,12 @@
 /**
  * Lazy Chess
  * @author Bryan Lin
- * @version 2002.2.22
+ * @version 2002.3.3
  */
 
 import static Information.Tag.*;
+import javax.swing.ImageIcon;
+import Information.Tag;
 
 /**
  * This is an class inheritied by the pieces with their own type
@@ -68,4 +70,34 @@ public class Piece implements Cloneable
         return new Piece(side, type);
     }
 
+    public ImageIcon getImage()
+    {
+        String fileName = (side == Tag.Color.WHITE ? "white" : "black") + "_";
+    
+        switch(type)
+        {
+            case PAWN:
+                fileName += "pawn";
+                break;
+            case KNIGHT:
+                fileName += "knight";
+                break;
+            case ROOK:
+                fileName += "rook";
+                break;
+            case BISHOP:
+                fileName += "bishop";
+                break;
+            case KING:
+                fileName += "king";
+                break;
+            case QUEEN:
+                fileName += "queen";
+                break;
+        }
+
+        fileName += ".png";
+        
+        return new ImageIcon(Piece.class.getResource("/assets/" + fileName));
+    }
 }
