@@ -35,23 +35,13 @@ public class BoardGUI extends JFrame {
     
     	graphicInterface.fillRect(50, 50, 600, 600);
         for(int x=50; x<=600; x+=150)
-        {
-        
             for(int y=50; y<=600; y+=150)
-            {
             	graphicInterface.clearRect(x, y, 75, 75);
-            }
-        }
         
     
          for(int x=125; x<=600; x+=150)
-        {
-        
             for(int y=125; y<=600; y+=150)
-            {
             	graphicInterface.clearRect(x, y, 75, 75);
-            }
-        }
         
     }
 

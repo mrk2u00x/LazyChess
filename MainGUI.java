@@ -43,19 +43,31 @@ public class MainGUI {
 	 * Create the application.
 	 */
 	public MainGUI() {
-		initialize();
+		initializeFrame();
+		initializeMenu();
+		initializePlayer();
+		initializeButton();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initializeFrame() {
 		mainGUI = new JFrame();
 		mainGUI.setIconImage(Toolkit.getDefaultToolkit().getImage(MainGUI.class.getResource("/assets/white_king.png")));
 		mainGUI.setTitle("Lazy Chess");
 		mainGUI.setBounds(100, 100, 513, 507);
+		mainGUI.setResizable(false);
 		mainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JLabel title = new JLabel("Lazy Chess");
+		title.setBounds(203, 10, 82, 17);
+		title.setFont(new Font("Tahoma", Font.BOLD, 14));
+		mainGUI.getContentPane().add(title);
+	}
 
+	private void initializeMenu()
+	{
 		JMenuBar menuBar = new JMenuBar();
 		mainGUI.setJMenuBar(menuBar);
 
@@ -95,12 +107,10 @@ public class MainGUI {
 		});
 		helpMenu.add(menuAbout);
 		mainGUI.getContentPane().setLayout(null);
-		
-		JLabel labelVoiceChess = new JLabel("Voice Chess");
-		labelVoiceChess.setBounds(203, 0, 82, 17);
-		labelVoiceChess.setFont(new Font("Tahoma", Font.BOLD, 14));
-		mainGUI.getContentPane().add(labelVoiceChess);
-		
+	}
+
+	private void initializePlayer()
+	{
 		JLabel whiteIcon = new JLabel("");
 		whiteIcon.setIcon(new ImageIcon(MainGUI.class.getResource("/assets/white_king.png")));
 		whiteIcon.setBounds(89, 60, 128, 119);
@@ -132,7 +142,10 @@ public class MainGUI {
 		blackPlayerLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		blackPlayerLabel.setBounds(234, 281, 51, 14);
 		mainGUI.getContentPane().add(blackPlayerLabel);
-		
+	}
+	
+	private void initializeButton()
+	{
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.setToolTipText("Starts New Game");
 		newGameButton.addActionListener(new ActionListener() {
@@ -167,7 +180,7 @@ public class MainGUI {
 		testButton.setBounds(371, 390, 100, 23);
 		mainGUI.getContentPane().add(testButton);
 	}
-	
+
 	//Creates new About form
 	private void aboutMenuItemActionPerfromed(java.awt.event.ActionEvent e) {
 		About aboutWindow = new About();
