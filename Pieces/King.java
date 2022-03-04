@@ -2,7 +2,7 @@
  * @author - Michael
  * @create - date 2022-02-28
  * @modify - date NA
- * @desc  - Defining derived class King
+ * @desc   - Defining derived class King
  */
 
 package Pieces;

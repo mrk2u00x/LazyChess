@@ -2,8 +2,8 @@
  * @author - Michael
  * @create - date 2022-02-28
  * @modify - date NA
- * @desc  - Defining Abstract class Piece. NOTE: when caculating 
- *          legal positions, x and y values in postion get swap to y and x
+ * @desc   - Defining Abstract class Piece. NOTE: when caculating 
+ *           legal positions, the x and y values in postion are swapped to y and x
  */
 
 package Pieces;

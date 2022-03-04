@@ -1,6 +1,7 @@
 /**
+ * @author Bryan, Michael
  * @create - date 2022-02-18
- * @modify - date 2022-02-28
+ * @modify - date 2022-02-03
  * @desc  - Defining class Tag to store enumeration of colors
  *          Status. Also contains location of assets, piece images
  *          and image size for those assets

@@ -1,3 +1,10 @@
+/**
+ * @author - Michael
+ * @create - date 2022-03-1
+ * @modify - date 2022-03-03
+ * @desc   - defining board class
+ */
+
 package BoardComponents;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -255,5 +262,4 @@ public class Board extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent e) {
         // TODO Auto-generated method stub
     }
-
 }

@@ -1,3 +1,10 @@
+/**
+ * @author - Michael
+ * @create - date 2022-03-01
+ * @modify - date 2022-03-03
+ * @desc   - defining position class
+ */
+
 package BoardComponents;
 
 import java.awt.Color;

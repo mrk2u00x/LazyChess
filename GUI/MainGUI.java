@@ -1,8 +1,8 @@
 /**
  * @author - Michael
  * @create - date 2022-03-01
- * @modify - date NA
- * @desc  - main menu
+ * @modify - date 2022-03-03
+ * @desc   - main menu
  */
 
 package GUI;
@@ -180,5 +180,4 @@ public class MainGUI implements Runnable {
             mainGUI.dispose();
         }
     }
-
-} 
+}

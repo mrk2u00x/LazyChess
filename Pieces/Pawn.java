@@ -2,7 +2,7 @@
  * @author - Michael
  * @create - date 2022-02-28
  * @modify - date NA
- * @desc  - Defining derived class Pawn
+ * @desc   - Defining derived class Pawn
  */
 
 package Pieces;

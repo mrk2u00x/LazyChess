@@ -2,7 +2,7 @@
  * @author - Michael
  * @create - date 2022-02-28
  * @modify - date NA
- * @desc  - Defining derived class Rook
+ * @desc   - Defining derived class Rook
  */
 
 package Pieces;
@@ -34,5 +34,4 @@ public class Rook extends Piece {
     public String name() { 
         return "(R)"; 
     }
-    
 }
