@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -140,6 +141,7 @@ public class MainGUI {
 		newGameButton.addActionListener(e -> newGameMenuItemActionPerformed(e));
 		newGameButton.setBounds(33, 390, 103, 23);
 		mainGUI.getContentPane().add(newGameButton);
+		newGameButton.setBackground(Color.WHITE);
 		
 		//Help button
 		JButton helpButton = new JButton("Help");
@@ -147,6 +149,7 @@ public class MainGUI {
 		helpButton.addActionListener(e -> helpMenuItemActionPerformed(e));
 		helpButton.setBounds(146, 390, 102, 23);
 		mainGUI.getContentPane().add(helpButton);
+		helpButton.setBackground(Color.WHITE);
 		
 		//Quit Button
 		JButton quitButton = new JButton("Quit");
@@ -154,10 +157,12 @@ public class MainGUI {
 		quitButton.addActionListener(e -> System.exit(0));
 		quitButton.setBounds(258, 390, 103, 23);
 		mainGUI.getContentPane().add(quitButton);
+		quitButton.setBackground(Color.WHITE);
 		
 		JButton testButton = new JButton("TEST");
 		testButton.setBounds(371, 390, 100, 23);
 		mainGUI.getContentPane().add(testButton);
+		testButton.setBackground(Color.WHITE);
 	}
 
 	//Creates new About form
@@ -165,14 +170,24 @@ public class MainGUI {
 		About aboutWindow = new About();
 		aboutWindow.setVisible(true);
 	}
+	
 	//Creates new Help Form
 	private void helpMenuItemActionPerformed(ActionEvent e) {
 		Help helpWindow = new Help();
 		helpWindow.setVisible(true);
 	}
+	
 	//Creates chess board form
 	private void newGameMenuItemActionPerformed(ActionEvent e) {
-		BoardGUI boardGUI = new BoardGUI();
+		//Get names from the field
+		String p1 = whitePlayerName.getText();
+		p1 = p1.isEmpty() ? "P1" : p1;
+
+		String p2 = blackPlayerName.getText();
+		p2 = p2.isEmpty() ? "P2" : p2;
+
+		BoardGUI boardGUI = new BoardGUI(p1, p2);
 		boardGUI.setVisible(true);
+		mainGUI.dispose();
 	}
 }

@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 public class BoardGUI extends JFrame {
 
 	private JPanel contentPane;
-
+	private Logic gameBoard;
 	/**
 	 * Launch the application.
 	 */
@@ -27,7 +27,9 @@ public class BoardGUI extends JFrame {
 		try
 		{
 			BoardGUI frame = new BoardGUI();
-		} catch (Exception e) {
+		}
+		catch(Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
@@ -55,14 +57,21 @@ public class BoardGUI extends JFrame {
 		}	
 	}
 
+	
+	public BoardGUI()
+	{
+		this("P1", "P2");
+	}
+	
+	
 	/**
 	 * Create the frame.
 	 */
-	public BoardGUI() {
+	public BoardGUI(String name1, String name2) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(Color.pink);
 		setResizable(false);
-		setSize(616, 639);
+		setSize(616, 638);
 		setTitle("Lazy Chess Game");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(About.class.getResource("/assets/white_king.png")));
 		setLocationRelativeTo(null);
@@ -72,6 +81,9 @@ public class BoardGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(getLayout());
 		contentPane.setLayout(null);
+
+
+		gameBoard = new Logic(name1, name2);
 		
 //		JLabel lblNewLabel = new JLabel("");
 //		lblNewLabel.setIcon(new ImageIcon(BoardGUI.class.getResource("/assets/white_castle.png")));
