@@ -1,19 +1,11 @@
-/**
- * @author - Michael
- * @create - date 2022-03-01
- * @modify - date 2022-03-03
- * @desc   - game gui
- */
-
 package GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -33,7 +25,7 @@ public class GameGUI {
 
     private void initializeGameGUI() {
         createFrame();
-        AddButtons();
+        addButtons();
         creatBoardGUI();
         setSize();
         this.gameGUI.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -41,11 +33,7 @@ public class GameGUI {
 
     private void createFrame() {
         gameGUI = new JFrame("Lazzy Chess");
-        try {
-            gameGUI.setIconImage(ImageIO.read(new File(Tag.WHITE_KING)));
-        } catch  (Exception e) { 
-            System.out.println("file missing: " + Tag.WHITE_KING);
-        }
+        gameGUI.setIconImage(new ImageIcon(Tag.LAZY_ICON).getImage());
         this.gameGUI.setLayout(new BorderLayout(0, 20));
     }
 
@@ -61,40 +49,34 @@ public class GameGUI {
         this.gameGUI.setResizable(false);
     }
 
-    private JPanel AddButtons() {
+    private void addButtons() {
         JPanel buttons = new JPanel();
         buttons.setLayout(new GridLayout(1, 3, 10, 10));
 
         final JButton quite = new JButton("Quit");
-        quite.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                quitItemActionPerfromed(e);
-            }
-        });
-
-        final JButton newGame = new JButton("Main Menu");
-        newGame.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                mainMenuItemActionPerfromed(e);
-            }
-        });
-
+        final JButton mainMenu = new JButton("Main Menu");
+        
+        quite.setBackground(new Color(251, 252, 247));
+        mainMenu.setBackground(new Color(251, 252, 247));
+        
+        quite.addActionListener((e) -> quitItemActionPerformed(e));
+        mainMenu.addActionListener((e) ->  mainMenuItemActionPerformed(e));
+        
         buttons.add(quite);
-        buttons.add(newGame);
+        buttons.add(mainMenu);
         gameGUI.add(buttons, BorderLayout.NORTH);
-        return buttons;
     }
-    private void quitItemActionPerfromed(java.awt.event.ActionEvent e) {
+    
+    private void quitItemActionPerformed(ActionEvent e) {
         int quit = JOptionPane.showConfirmDialog(gameGUI, "Are you sure you want to quite?", "Quite", JOptionPane.OK_CANCEL_OPTION);
-        if(quit == JOptionPane.OK_OPTION) {
-            gameGUI.dispose();
-        }
+        if(quit == JOptionPane.OK_OPTION) gameGUI.dispose();
     }
 
-    private void mainMenuItemActionPerfromed(java.awt.event.ActionEvent e) {
+    private void mainMenuItemActionPerformed(ActionEvent e) {
         int quit = JOptionPane.showConfirmDialog(gameGUI,
         "Are you sure you want to go to main menu?" + 
-        "\nThis game session has not been saved.", "Main Menu", JOptionPane.OK_CANCEL_OPTION);
+        "\nThis game session has not been saved.",
+        "Main Menu", JOptionPane.OK_CANCEL_OPTION);
         if(quit == JOptionPane.OK_OPTION) {
             SwingUtilities.invokeLater(new MainGUI());
             gameGUI.dispose();

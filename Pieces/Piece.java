@@ -1,11 +1,3 @@
-/**
- * @author - Michael
- * @create - date 2022-02-28
- * @modify - date NA
- * @desc   - Defining Abstract class Piece. NOTE: when caculating 
- *           legal positions, the x and y values in postion are swapped to y and x
- */
-
 package Pieces;
 
 import java.awt.Graphics;
@@ -34,26 +26,19 @@ public abstract class Piece {
         setImage(imageFileName);
     }
 
-    /**
-     * setters
-     */
+    // setters
     public void setAlive() { this.alive = true; }
     public void setDead() { this.alive = false; }
     public void setSide(Color side) { this.side = side; }
     public void setPosition(Position position) { this.position = position; }
     
     public void setImage(String imageFileName) { 
-        try {
-            if (this.image == null)
-                this.image = ImageIO.read(new File(imageFileName)); 
-        } catch (IOException e) {
-            System.out.println("Unable to locate file: " + imageFileName);
-        }
+        if (this.image == null)
+            try { this.image = ImageIO.read(new File(imageFileName));
+            } catch (IOException e) { e.printStackTrace(); } 
     }
 
-    /**
-     * getters
-     */
+    // getters
     public Color getSide() { return this.side; }
     public boolean isAlive() { return this.alive == true; }
     public boolean isDead() { return this.alive == false; }
@@ -61,9 +46,7 @@ public abstract class Piece {
     public Image getImage() { return this.image; }
     public void draw(Graphics g) { g.drawImage(this.getImage(), this.getPosition().getPosX(), this.getPosition().getPosY(), null); }
 
-    /**
-     * methods handling moves
-     */
+    // methods handling move
     public boolean move(Position desPosition) {
         boolean canMove = true;
         Piece desPiece = desPosition.getPiece();
@@ -82,9 +65,8 @@ public abstract class Piece {
         return canMove;
     }
 
-    /**
-     * methods handling legal check
-     */
+
+    // methods handling legal check
     public boolean positionInBounds(int value) {
         return (value >= Tag.SIZE_MIN && value < Tag.SIZE_MAX);
     }

@@ -1,10 +1,3 @@
-/**
- * @author - Michael
- * @create - date 2022-02-28
- * @modify - date NA
- * @desc   - Defining derived class Bishop
- */
-
 package Pieces;
 
 import java.util.ArrayList;
