@@ -1,7 +1,7 @@
 /**
  * Lazy Chess
  * @author Bryan Lin
- * @version 2002.2.22
+ * @version 2002.3.4
  */
 
 import static Information.Tag.*;
@@ -43,7 +43,7 @@ public class Board implements Cloneable
      */
     public Board(String name1, String name2)
     {
-        new Board();
+        this();
         p1 = new Player(Color.WHITE, name1);
         p2 = new Player(Color.BLACK, name2);
     }
