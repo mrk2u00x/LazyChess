@@ -39,7 +39,7 @@ public class MainGUI {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the application.
 	 */
@@ -49,7 +49,7 @@ public class MainGUI {
 		initializePlayer();
 		initializeButton();
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -60,6 +60,7 @@ public class MainGUI {
 		mainGUI.setBounds(100, 100, 513, 507);
 		mainGUI.setResizable(false);
 		mainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainGUI.getContentPane().setLayout(null);
 		
 		JLabel title = new JLabel("Lazy Chess");
 		title.setBounds(203, 10, 82, 17);
@@ -95,7 +96,6 @@ public class MainGUI {
 		JMenuItem menuAbout = new JMenuItem("About");
 		menuAbout.addActionListener(e -> aboutMenuItemActionPerfromed(e));
 		helpMenu.add(menuAbout);
-		mainGUI.getContentPane().setLayout(null);
 	}
 
 	private void initializePlayer()
