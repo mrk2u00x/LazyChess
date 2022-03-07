@@ -5,7 +5,10 @@
  */
 
 import static Information.Tag.*;
+import Information.Layout;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import java.awt.Graphics;
 import Information.Tag;
 
 /**
@@ -13,7 +16,7 @@ import Information.Tag;
  * It contains basic and repetitve columns for every pieces, also requiring the other
  * pieces to have the method getLegalMove() to generate moves for each sub-pieces.
  */
-public class Piece implements Cloneable
+public class Piece extends JComponent implements Cloneable
 {
 
     /**
@@ -69,7 +72,7 @@ public class Piece implements Cloneable
     {
         return new Piece(side, type);
     }
-
+    
     public ImageIcon getImage()
     {
         String fileName = (side == Tag.Color.WHITE ? "white" : "black") + "_";

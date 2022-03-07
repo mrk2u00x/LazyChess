@@ -1,25 +1,11 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
+import Information.Layout;
+import java.awt.*;
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
-import java.awt.Point;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.MouseInputListener;
-import javax.swing.JLabel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
-public class BoardGUI extends JFrame
+public class BoardGUI extends JFrame implements MouseInputListener
 {
 
 	private JPanel contentPane;
@@ -55,6 +41,8 @@ public class BoardGUI extends JFrame
 
 	public void paintBoard(Graphics g)
 	{
+		int size = Layout.GRID_SIZE;
+		
 		for(int y = 0; y < 4; y++)
 			for(int x = 0; x < 4; x++)
 			{
@@ -62,12 +50,12 @@ public class BoardGUI extends JFrame
 				int baseY = 150 * y + 50;
 				
 				g.setColor(Color.WHITE);
-				g.fillRect(baseX, baseY, 75, 75);
-				g.fillRect(baseX + 75, baseY + 75, 75, 75);
+				g.fillRect(baseX, baseY, size, size);
+				g.fillRect(baseX + size, baseY + size, size, size);
 
 				g.setColor(Color.BLACK);
-				g.fillRect(baseX + 75, baseY, 75, 75);
-				g.fillRect(baseX, baseY + 75, 75, 75);
+				g.fillRect(baseX + size, baseY, size, size);
+				g.fillRect(baseX, baseY + size, size, size);
 			}	
 	}
 
@@ -99,10 +87,6 @@ public class BoardGUI extends JFrame
 		contentPane.setLayout(null);
 */
 		gameBoard = new Logic(name1, name2);
-
-		initializeButtons();
-		//Image a = Toolkit.getDefaultToolkit().getImage(BoardGUI.class.getResource("assets/black_bishop.png");
-		//gridButtons[0][0].setIcon(new ImageIcon(a));
 		
 		setVisible(true);
 	}
@@ -114,25 +98,24 @@ public class BoardGUI extends JFrame
 		//if(gameBoard.legalSelect(p))
 	}
 
-	public void initializeButtons()
-	{
-			
-		JButton[][] gridButtons = new JButton[8][8];
-		
-		for(int y = 0; y < 8; y++)
-			for(int x = 0; x < 8; x++)
-			{	
-				final int pX = x;
-				final int pY = 8 - y;
+	@Override
+	public void mouseClicked(MouseEvent e) {}
 
-				gridButtons[x][y] = new JButton();
-				gridButtons[x][y].setBounds(75 * x + 10, 75 * y + 30, 75, 75);
-				gridButtons[x][y].addActionListener(e -> selectedPoint(new Point(pX, pY)));
-				gridButtons[x][y].setOpaque(false);
-				gridButtons[x][y].setContentAreaFilled(false);
-				gridButtons[x][y].setBorderPainted(false);
-				
-				getContentPane().add(gridButtons[x][y]);
-			}
-	}
+	@Override
+	public void mousePressed(MouseEvent e) {}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+
+	@Override
+	public void mouseExited(MouseEvent e) {}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {}
 }
