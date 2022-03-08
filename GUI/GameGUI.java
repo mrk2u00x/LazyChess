@@ -32,7 +32,7 @@ public class GameGUI {
     }
 
     private void createFrame() {
-        gameGUI = new JFrame("Lazzy Chess");
+        gameGUI = new JFrame("Voice Controlled Chess");
         gameGUI.setIconImage(new ImageIcon(Tag.LAZY_ICON).getImage());
         this.gameGUI.setLayout(new BorderLayout(0, 20));
     }
@@ -68,7 +68,7 @@ public class GameGUI {
     }
     
     private void quitItemActionPerformed(ActionEvent e) {
-        int quit = JOptionPane.showConfirmDialog(gameGUI, "Are you sure you want to quite?", "Quite", JOptionPane.OK_CANCEL_OPTION);
+        int quit = JOptionPane.showConfirmDialog(gameGUI, "Are you sure you want to quit?", "Quit", JOptionPane.OK_CANCEL_OPTION);
         if(quit == JOptionPane.OK_OPTION) gameGUI.dispose();
     }
 

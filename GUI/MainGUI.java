@@ -121,7 +121,7 @@ public class MainGUI implements Runnable {
     }
 
     private void quitItemActionPerformed(java.awt.event.ActionEvent e) {
-        int quit = JOptionPane.showConfirmDialog(mainGUI, "Are you sure you want to quite?", "Quite", JOptionPane.OK_CANCEL_OPTION);
+        int quit = JOptionPane.showConfirmDialog(mainGUI, "Are you sure you want to quit?", "Quit", JOptionPane.OK_CANCEL_OPTION);
         if(quit == JOptionPane.OK_OPTION) mainGUI.dispose();
     }
 }
