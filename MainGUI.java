@@ -56,13 +56,13 @@ public class MainGUI {
 	private void initializeFrame() {
 		mainGUI = new JFrame();
 		mainGUI.setIconImage(Toolkit.getDefaultToolkit().getImage(MainGUI.class.getResource("/assets/white_king.png")));
-		mainGUI.setTitle("Lazy Chess");
+		mainGUI.setTitle("Voice Chess");
 		mainGUI.setBounds(100, 100, 513, 507);
 		mainGUI.setResizable(false);
 		mainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainGUI.getContentPane().setLayout(null);
 		
-		JLabel title = new JLabel("Lazy Chess");
+		JLabel title = new JLabel("Voice Chess");
 		title.setBounds(203, 10, 82, 17);
 		title.setFont(new Font("Tahoma", Font.BOLD, 14));
 		mainGUI.getContentPane().add(title);
