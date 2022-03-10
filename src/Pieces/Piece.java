@@ -35,7 +35,12 @@ public abstract class Piece {
     public void setImage(String imageFileName) { 
         if (this.image == null)
             try { this.image = ImageIO.read(new File(imageFileName));
-            } catch (IOException e) { e.printStackTrace(); } 
+            } 
+            catch (IOException e) { 
+                try { 
+                    this.image = ImageIO.read(new File("VoiceControlChess\\" + imageFileName));
+                } catch (IOException a) { a.printStackTrace(); }
+        }
     }
 
     // getters
