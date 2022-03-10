@@ -74,7 +74,7 @@ public class BoardGUI extends JFrame implements MouseInputListener
 		setBackground(Color.gray);
 		setResizable(false);
 		setSize(640, 750);
-		setTitle("Lazy Chess Game");
+		setTitle("Voice Chess Game");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(About.class.getResource("/assets/white_king.png")));
 		setLocationRelativeTo(null);
 		setLayout(null);

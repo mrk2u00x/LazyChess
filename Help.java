@@ -59,7 +59,7 @@ public class Help extends JDialog {
 			contentPanel.add(textAreaHelp);
 		}
 		{
-			JLabel labelLazyChessHelp = new JLabel("Lazy Chess Help Page");
+			JLabel labelLazyChessHelp = new JLabel("Voice Chess Help Page");
 			labelLazyChessHelp.setIcon(new ImageIcon(About.class.getResource("/assets/white_king.png")));
 			labelLazyChessHelp.setFont(new Font("Tahoma", Font.BOLD, 16));
 			labelLazyChessHelp.setBounds(65, 11, 321, 128);

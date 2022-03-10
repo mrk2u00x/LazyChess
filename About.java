@@ -59,7 +59,7 @@ public class About extends JDialog {
 			contentPanel.add(testAreaAbout);
 		}
 		{
-			JLabel labelLazyChess = new JLabel("Lazy Chess About Page");
+			JLabel labelLazyChess = new JLabel("Voice Chess About Page");
 			labelLazyChess.setIcon(new ImageIcon(About.class.getResource("/assets/white_king.png")));
 			labelLazyChess.setFont(new Font("Tahoma", Font.BOLD, 16));
 			labelLazyChess.setBounds(139, 11, 321, 128);
