@@ -154,7 +154,7 @@ public class Board extends JPanel implements MouseListener {
      * right-click to deselect
      */
     @Override
-    public void mouseClicked(MouseEvent e) {        
+    public void mousePressed(MouseEvent e) {        
         Position clickedPosition = (Position) this.getComponentAt(new Point(e.getX(), e.getY()));
 
         if(e.getButton() == MouseEvent.BUTTON1 && selectedPiece == null) {
@@ -260,7 +260,7 @@ public class Board extends JPanel implements MouseListener {
      * currently left empty as they are not needed
      */
     @Override
-    public void mousePressed(MouseEvent e) { }
+    public void mouseClicked(MouseEvent e) { }
 
     @Override
     public void mouseReleased(MouseEvent e) { }
